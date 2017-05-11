@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Grafico de Alunos por Cidade";
+}
+
+<h2>Grafico de alunos por Cidade</h2>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    
+    var datas = JSON.parse('@ViewBag.Data');
+    
+    google.charts.load('current', { 'packages': ['corechart'] });
+    
+    google.charts.setOnLoadCallback(drawChart);
+    
+    function drawChart() {
+
+        var charData = new google.visualization.arrayToDataTable(datas);
+        
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+        var options = {
+            'title': 'Grafido de alunos por cidade',
+            'width': 400,
+            'height': 300,
+            'is3D': true
+        };
+        chart.draw(charData, options);
+    }
+</script>
+
+<td><div id="piechart_div" style="border: 1px solid #ccc"></div></td>

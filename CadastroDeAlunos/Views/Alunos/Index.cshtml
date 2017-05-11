@@ -1,0 +1,104 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<CadastroDeAlunos.Models.Pessoas>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<p>
+    @Html.ActionLink("Novo Aluno", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Alunos", FormMethod.Get))
+{
+
+    <div class="form-group">
+        @Html.Label("", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-6">
+            @Html.DropDownList("coluna", new SelectList(new List<Object>
+            {
+                new {value = "id", text = "Código"},
+                new {value = "Nome", text = "Nome"},
+                new {value = "DataNascimento", text = "Data de Nascimento"},
+                new {value = "DataCadastro", text = "Data do Cadastro"}
+
+            }, "value", "text", -0), new { htmlAttributes = new { @class = "form-control" } })
+            @Html.TextBox("SearchString", "")
+            <input type="submit" value="Filtrar" />
+        </div>
+    </div>
+    
+    @*<p>
+        <select id="coluna" name="coluna">
+            <option value="id">Código</option>
+            <option value="Nome">Nome</option>
+            <option value="DataNascimento">Data de Nascimento</option>
+            <option value="DataCadastro">Data do Cadastro</option>
+        </select>
+        @Html.TextBox("SearchString", "")
+        <input type="submit" value="Filtrar" />
+    </p>*@
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Código", "Index", new { SortOrder = ViewBag.CodigoParamentro })
+        </th>
+        <th>
+            @Html.ActionLink("Nome", "Index", new { SortOrder = ViewBag.NomeParamentro })
+        </th>
+        <th>
+            @Html.ActionLink("Cpf", "Index", new { SortOrder = ViewBag.CpfParamentro })
+        </th>
+        <th>
+            @Html.ActionLink("Sexo", "Index", new { SortOrder = ViewBag.CidadeParamentro })
+        </th>
+        <th>
+            @Html.ActionLink("Telefone", "Index", new { SortOrder = ViewBag.CidadeParamentro })
+        </th>
+        <th>
+            @Html.ActionLink("DataCadastro", "Index", new { SortOrder = ViewBag.CidadeParamentro })
+        </th>
+        <th>
+            @Html.ActionLink("Cidade", "Index", new { SortOrder = ViewBag.CidadeParamentro })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCadastro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cidade)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

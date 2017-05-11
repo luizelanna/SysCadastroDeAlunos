@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CadastroDeAlunos.Models.Cidades>
+
+@{
+    ViewBag.Title = "Cidades";
+    Layout = "~/Views/Shared/_LayoutRelatorio.cshtml";
+}
+
+<h2>Cidades</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeCidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cep)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NomeCidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cep)
+        </td>
+    </tr>
+}
+
+</table>

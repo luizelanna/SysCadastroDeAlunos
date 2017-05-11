@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Cadastro de Alunos", "Index", "Alunos")</li>
+                <li>@Html.ActionLink("Cadastro de Cidades", "Index", "Cidades")</li>
+                <li>@Html.ActionLink("Alunos Por Cidade", "AlunoCidade", "Alunos")</li>
+                <li>@Html.ActionLink("Relatorios", "Alunos", "Relatorios")</li>
+                <li>@Html.ActionLink("Graficos", "Index", "Graficos")</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    }
+}
+else
+{
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("Início", "Index", "Home")</li>
+            <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+            <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+        </ul>
+        @Html.Partial("_LoginPartial")
+    </div>
+}

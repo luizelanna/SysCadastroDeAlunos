@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "AlunosCidades";
+    Layout = "~/Views/Shared/_LayoutRelatorio.cshtml";
+}
+
+@foreach (var item in ViewBag.Cidade) {
+    
+            @Html.Action("ListaAlunosCidades", "Relatorios", new { @nomeCidade = item })
+        
+}

@@ -1,0 +1,57 @@
+﻿@model CadastroDeAlunos.Models.Cidades
+
+
+<div class="form-group">
+    @Html.LabelFor(model => model.NomeCidade, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.NomeCidade, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.NomeCidade, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-6">
+        @Html.DropDownListFor(model => model.Estado, new SelectList(new List<Object>
+                {
+                    new {value = "", text = "Selecione Um Estado"},
+                    new {value = "AC", text = "Acre"},
+                    new {value = "AL", text = "Alagoas"},
+                    new {value = "AP", text = "Amapá"},
+                    new {value = "AM", text = "Amazonas"},
+                    new {value = "BA", text = "Bahia"},
+                    new {value = "CE", text = "Ceará"},
+                    new {value = "DF", text = "Distrito Federal"},
+                    new {value = "ES", text = "Espírito Santo"},
+                    new {value = "GO", text = "Goiás"},
+                    new {value = "MA", text = "Maranhão"},
+                    new {value = "MT", text = "Mato Grosso"},
+                    new {value = "MS", text = "Mato Grosso do Sul"},
+                    new {value = "MG", text = "Minas Gerais"},
+                    new {value = "PA", text = "Pará"},
+                    new {value = "PB", text = "Paraíba"},
+                    new {value = "PR", text = "Paraná"},
+                    new {value = "PE", text = "Pernambuco"},
+                    new {value = "PI", text = "Piauí"},
+                    new {value = "RJ", text = "Rio de Janeiro"},
+                    new {value = "RN", text = "Rio Grande do Norte"},
+                    new {value = "RN", text = "Rio Grande do Sul"},
+                    new {value = "RO", text = "Rondônia"},
+                    new {value = "RR", text = "Roraima"},
+                    new {value = "SC", text = "Santa Catarina"},
+                    new {value = "SP", text = "São Paulo"},
+                    new {value = "SE", text = "Sergipe"},
+                    new {value = "TO", text = "Tocantins"}
+
+                }, "value", "text", 0), new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(model => model.Cep, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.EditorFor(model => model.Cep, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Cep, "", new { @class = "text-danger" })
+    </div>
+</div>

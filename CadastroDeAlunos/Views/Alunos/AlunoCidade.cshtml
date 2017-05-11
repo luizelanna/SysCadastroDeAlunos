@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CadastroDeAlunos.Models.Cidades>
+
+
+@using (Html.BeginForm("AlunoCidade", "Alunos", FormMethod.Get))
+{
+    <p>
+        <select id="coluna" name="coluna">
+            <option value="Codigo">Codigo</option>
+            <option value="NomeCidade">Cidade</option>
+            <option value="Estado">Estado</option>
+            <option value="Cep">CEP</option>
+        </select>
+        @Html.TextBox("SearchString", "")
+        <input type="submit" value="Buscar" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeCidade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cep)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeCidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cep)
+            </td>
+            <td>
+                @Html.ActionLink("Alunos", "ListaAlunoCidade", new { cidade = item.NomeCidade })
+
+            </td>
+        </tr>
+    }
+
+</table>
